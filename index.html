@@ -20,13 +20,9 @@
       --container: 1280px;
     }
     * { box-sizing: border-box; }
-    html, body { height: 100%; }
-    body { margin:0; font-family: system-ui, sans-serif; color: var(--ink);
-           background: url('https://www.ica.eu.com/wp-content/uploads/sites/3/2017/07/copertina.jpg') no-repeat center center fixed;
-           background-size: cover;
-           display:flex; flex-direction:column; min-height:100vh; }
+    html, body { height: 100%; margin:0; font-family: system-ui, sans-serif; color: var(--ink); }
+    body { background: url('https://www.ica.eu.com/wp-content/uploads/sites/3/2017/07/copertina.jpg') no-repeat center center fixed; background-size: cover; display:flex; flex-direction:column; min-height:100vh; text-align:center; }
 
-    /* Overlay for readability */
     body::before {
       content: "";
       position: fixed;
@@ -35,47 +31,38 @@
       z-index: -1;
     }
 
-    /* Header */
-    .header { position: sticky; top: 0; z-index: 50; backdrop-filter: blur(6px); background: rgba(255,255,255,.85); border-bottom: 1px solid rgba(16,20,23,.08); }
-    .nav { max-width: var(--container); margin: 0 auto; display: flex; align-items: center; justify-content: space-between; padding: 14px 24px; }
+    .header { position: sticky; top: 0; z-index: 50; backdrop-filter: blur(6px); background: rgba(255,255,255,.95); border-bottom: 1px solid rgba(16,20,23,.08); }
+    .nav { max-width: var(--container); margin: 0 auto; display: flex; align-items: center; justify-content: center; padding: 14px 24px; gap: 30px; }
     .brand { display:flex; align-items:center; gap:10px; text-decoration:none; color: var(--ink); }
     .brand svg { width:48px; height:48px; }
-    .brand h1 { font-size: 1.1rem; margin:0; }
-    .nav a.cta { background: var(--accent); color: #fff; padding: 12px 16px; border-radius: 999px; text-decoration: none; font-weight: 650; }
+    .brand h1 { font-size: 1.3rem; margin:0; }
+    .nav a.cta { background: var(--accent); color: #fff; padding: 12px 20px; border-radius: 999px; text-decoration: none; font-weight: 650; }
 
-    /* Main */
     main { flex: 1 0 auto; }
 
-    /* Hero */
-    .hero { max-width: var(--container); margin: 34px auto; padding: 0 24px; display: grid; grid-template-columns: 1.15fr 1fr; gap: 34px; }
-    @media (max-width: 1024px){ .hero{ grid-template-columns:1fr; gap:22px; } }
-    .card { background: var(--paper); border-radius: var(--radius); box-shadow: var(--shadow); }
-    .hero .left { padding:34px; }
+    .hero { max-width: var(--container); margin: 50px auto; padding: 40px 24px; display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: stretch; }
+    @media (max-width: 1024px){ .hero{ grid-template-columns:1fr; } }
+    .card { background: var(--paper); border-radius: var(--radius); box-shadow: var(--shadow); width:100%; padding:40px; }
+    .hero .left { text-align:left; }
     .flag { display:inline-block; background: var(--accent); color:#fff; padding:8px 14px; border-radius:999px; font-weight:700; }
-    .hero h2 { font-size: clamp(2rem, 1.8vw + 1.4rem, 2.6rem); margin:16px 0 12px; }
-    .hero p { font-size: 1.05rem; }
-    .btn-estimation { display:inline-block; background: var(--accent); color:#fff; padding:12px 20px; border-radius:999px; text-decoration:none; font-weight:650; margin-top:16px; }
+    .hero h2 { font-size: clamp(2.2rem, 2vw + 1.4rem, 2.8rem); margin:20px 0 14px; }
+    .hero p { font-size: 1.1rem; line-height:1.6; }
+    .btn-estimation { display:inline-block; background: var(--accent); color:#fff; padding:14px 24px; border-radius:999px; text-decoration:none; font-weight:650; margin-top:20px; }
 
-    /* Slideshow (crossfade auto) */
-    .hero .right { position:relative; overflow:hidden; border-radius: var(--radius); background:#000; }
-    .slideshow { position:relative; width:100%; height:520px; }
-    @media (max-width: 1024px){ .slideshow{ height:380px; } }
-    .slide { position:absolute; inset:0; opacity:0; transition: opacity .8s ease; display:grid; place-items:center; }
-    .slide img { width:100%; height:100%; object-fit:contain; }
+    .hero .right { position:relative; overflow:hidden; border-radius: var(--radius); background: var(--paper); min-height:480px; }
+    .slideshow { position:relative; width:100%; height:100%; min-height:480px; }
+    .slide { position:absolute; inset:0; opacity:0; transition: opacity .8s ease; width:100%; height:100%; }
+    .slide img { width:100%; height:100%; object-fit:cover; border-radius: var(--radius); }
     .slide.active { opacity:1; }
 
-    /* Sections */
-    section { max-width: var(--container); margin:32px auto; padding:0 24px; }
-    .grid { display:grid; gap:22px; justify-content:center; }
-    .grid.cols-2 { grid-template-columns:repeat(2, minmax(320px, 1fr)); max-width: 900px; margin:0 auto; }
-    @media(max-width:900px){ .grid.cols-2{ grid-template-columns:1fr; } }
-    .tile { background: var(--paper); border-radius:var(--radius); box-shadow:var(--shadow); padding:28px; text-align:center; font-size:1.05rem; }
+    .services-contact { display:grid; grid-template-columns: repeat(3, 1fr); gap:28px; max-width: var(--container); margin:60px auto; padding:0 24px; }
+    @media(max-width:1024px){ .services-contact { grid-template-columns:1fr; } }
+    .tile { background: var(--paper); border-radius:var(--radius); box-shadow:var(--shadow); padding:40px; font-size:1.1rem; min-height:280px; display:flex; flex-direction:column; justify-content:center; }
 
-    /* Footer */
-    footer { background:#0c2a38; color:#d9f3ff; padding:30px 24px; margin-top:auto; }
-    .footer-inner { max-width: var(--container); margin:0 auto; display:grid; gap:18px; grid-template-columns:1fr auto; }
-    @media(max-width:800px){ .footer-inner{ grid-template-columns:1fr; } }
-    .small { font-size:.92rem; opacity:.9; }
+    footer { background:#0c2a38; color:#d9f3ff; padding:50px 24px; margin-top:auto; text-align:center; }
+    .footer-inner { max-width: var(--container); margin:0 auto; display:flex; justify-content:space-between; flex-wrap:wrap; gap:18px; align-items:center; }
+    .footer-inner div { flex:1; min-width:200px; }
+    .small { font-size:.92rem; opacity:.9; margin-top:20px; }
   </style>
 </head>
 <body>
@@ -97,30 +84,21 @@
         <p>Propre, net et sécuritaire. Nous servons <strong>Laval</strong>, <strong>Montréal</strong>, la <strong>Rive-Nord</strong> et les <strong>Laurentides</strong> avec un service fiable et ponctuel.</p>
         <a class="btn-estimation" href="#contact">Demander une estimation</a>
       </div>
-      <div class="card right">
+      <div class="card right" style="background:white;">
         <div class="slideshow" id="slideshow" aria-label="Photos de vitres propres">
-          <div class="slide active"><img src="https://www.bernard.fr/INTERSHOP/static/WFS/RAJA-Site/BERNARDFR/RAJA-BERNARDFR/fr_FR/img/conseils/header/nettoyage-vitre.jpg" alt="Nettoyage de vitres d'entreprise" /></div>
-          <div class="slide"><img src="https://img1.wsimg.com/isteam/ip/67d6b43b-d1cc-4c97-a381-d64216fe4afa/nettoyage-vitres-hauts-de-france_enhanced%20cop.webp/:/cr=t:9.89%25,l:0%25,w:100%25,h:75%25/rs=w:1240,h:620,cg=true" alt="Vitres impeccables sur immeuble industriel" /></div>
+          <div class="slide active"><img src="https://img.lapresse.ca/924x615/201706/29/1429277-communement-appelee-squeegee-raclette-instrument.jpg" alt="Travail de nettoyage de vitres avec raclette" /></div>
+          <div class="slide"><img src="https://images.squarespace-cdn.com/content/v1/61d0be1374a6a42af5ab922a/969d1f05-0f5a-4256-ad96-e2acf578409f/stock_vitres_06.jpg" alt="Bâtiment vitré propre" /></div>
         </div>
       </div>
     </div>
 
-    <!-- Services -->
-    <section id="services">
-      <div class="grid cols-2">
-        <div class="tile"><h3>Commercial</h3><p>Boutiques, restaurants, bureaux et immeubles à vitrine.</p></div>
-        <div class="tile"><h3>Industriel</h3><p>Entrepôts et bâtiments à grande surface vitrée.</p></div>
-      </div>
-    </section>
-
-    <!-- Contact -->
-    <section id="contact">
-      <div class="grid">
-        <div class="tile">
-          <h3>Contact</h3>
-          <p><strong>Téléphone :</strong> <a href="tel:+15142374066">514-237-4066</a></p>
-          <p><strong>Courriel :</strong> <a href="mailto:rbernard@hotmail.ca">rbernard@hotmail.ca</a></p>
-        </div>
+    <section class="services-contact">
+      <div class="tile"><h3>Commercial</h3><p>Boutiques, restaurants, bureaux et immeubles à vitrine.</p></div>
+      <div class="tile"><h3>Industriel</h3><p>Entrepôts et bâtiments à grande surface vitrée.</p></div>
+      <div class="tile">
+        <h3>Contact</h3>
+        <p><strong>Téléphone :</strong> <a href="tel:+15142374066">514-237-4066</a></p>
+        <p><strong>Courriel :</strong> <a href="mailto:rbernard@hotmail.ca">rbernard@hotmail.ca</a></p>
       </div>
     </section>
   </main>
@@ -139,10 +117,7 @@
   </footer>
 
   <script>
-    // Footer year
     document.getElementById('year').textContent = new Date().getFullYear();
-
-    // Simple slideshow auto (crossfade)
     const slideshow = document.getElementById('slideshow');
     const slides = Array.from(slideshow.querySelectorAll('.slide'));
     let idx = 0;
