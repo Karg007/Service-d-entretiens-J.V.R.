@@ -6,7 +6,7 @@
   <title>Service d'entretien J.V.R. — Lavage de vitres à Laval, Montréal, Rive-Nord et Laurentides</title>
   <meta name="description" content="Service d'entretien J.V.R. — Spécialistes du lavage de vitres commercial et industriel. Estimation gratuite. Laval, Montréal, Rive-Nord et Laurentides. Téléphone : 514-237-4066." />
   <meta name="theme-color" content="#1298CE" />
-  <link rel="icon" type="image/svg+xml" href="https://www.bernard.fr/INTERSHOP/static/WFS/RAJA-Site/BERNARDFR/RAJA-BERNARDFR/fr_FR/img/conseils/header/nettoyage-vitre.jpg" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%231298CE'/%3E%3Ctext x='50%' y='50%' font-size='28' font-weight='700' text-anchor='middle' dominant-baseline='middle' fill='white' font-family='Arial, sans-serif'%3EJVR%3C/text%3E%3C/svg%3E" />
   <style>
     :root {
       --blue-dark: #0b7db6;
@@ -15,41 +15,55 @@
       --ink: #111111;
       --paper: #ffffff;
       --accent: #101417;
-      --radius: 18px;
+      --radius: 20px;
       --shadow: 0 10px 24px rgba(0,0,0,.08), 0 2px 8px rgba(0,0,0,.05);
+      --container: 1280px;
     }
     * { box-sizing: border-box; }
-    body { margin:0; font-family: system-ui, sans-serif; color: var(--ink); background: linear-gradient(135deg, var(--blue-light) 0%, #e9f8ff 45%, #ffffff 100%); }
+    html, body { height: 100%; }
+    body { margin:0; font-family: system-ui, sans-serif; color: var(--ink);
+           background: linear-gradient(135deg, #0b7db6 0%, #1298ce 35%, #7fd3f7 65%, #e9f8ff 100%);
+           display:flex; flex-direction:column; min-height:100vh; }
 
     /* Header */
-    .header { position: sticky; top: 0; z-index: 50; backdrop-filter: blur(6px); background: rgba(255,255,255,.7); border-bottom: 1px solid rgba(16,20,23,.08); }
-    .nav { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; padding: 12px 20px; }
-    .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--ink); }
-    .brand svg { width:44px; height:44px; }
-    .brand h1 { font-size: 1.05rem; margin:0; }
-    .nav a.cta { background: var(--accent); color: #fff; padding: 10px 14px; border-radius: 999px; text-decoration: none; font-weight: 650; }
+    .header { position: sticky; top: 0; z-index: 50; backdrop-filter: blur(6px); background: rgba(255,255,255,.85); border-bottom: 1px solid rgba(16,20,23,.08); }
+    .nav { max-width: var(--container); margin: 0 auto; display: flex; align-items: center; justify-content: space-between; padding: 14px 24px; }
+    .brand { display:flex; align-items:center; gap:10px; text-decoration:none; color: var(--ink); }
+    .brand svg { width:48px; height:48px; }
+    .brand h1 { font-size: 1.1rem; margin:0; }
+    .nav a.cta { background: var(--accent); color: #fff; padding: 12px 16px; border-radius: 999px; text-decoration: none; font-weight: 650; }
+
+    /* Main */
+    main { flex: 1 0 auto; }
 
     /* Hero */
-    .hero { max-width: 1100px; margin: 26px auto; padding: 24px; display: grid; grid-template-columns: 1.15fr 1fr; gap: 28px; }
-    @media (max-width: 900px){ .hero{ grid-template-columns:1fr; } }
+    .hero { max-width: var(--container); margin: 34px auto; padding: 0 24px; display: grid; grid-template-columns: 1.15fr 1fr; gap: 34px; }
+    @media (max-width: 1024px){ .hero{ grid-template-columns:1fr; gap:22px; } }
     .card { background: var(--paper); border-radius: var(--radius); box-shadow: var(--shadow); }
-    .hero .left { padding:28px; }
-    .flag { display:inline-block; background: var(--accent); color:#fff; padding:6px 12px; border-radius:999px; font-weight:700; }
-    .hero h2 { font-size:2rem; margin:14px 0 10px; }
+    .hero .left { padding:34px; }
+    .flag { display:inline-block; background: var(--accent); color:#fff; padding:8px 14px; border-radius:999px; font-weight:700; }
+    .hero h2 { font-size: clamp(2rem, 1.8vw + 1.4rem, 2.6rem); margin:16px 0 12px; }
+    .hero p { font-size: 1.05rem; }
+    .btn-estimation { display:inline-block; background: var(--accent); color:#fff; padding:12px 20px; border-radius:999px; text-decoration:none; font-weight:650; margin-top:16px; }
 
-    .hero .right { display:flex; align-items:center; justify-content:center; padding:0; overflow:hidden; border-radius: var(--radius); }
-    .hero .right img { width:100%; height:100%; object-fit:cover; }
+    /* Slideshow (crossfade auto) */
+    .hero .right { position:relative; overflow:hidden; border-radius: var(--radius); background:#000; }
+    .slideshow { position:relative; width:100%; height:520px; }
+    @media (max-width: 1024px){ .slideshow{ height:380px; } }
+    .slide { position:absolute; inset:0; opacity:0; transition: opacity .8s ease; display:grid; place-items:center; }
+    .slide img { width:100%; height:100%; object-fit:contain; }
+    .slide.active { opacity:1; }
 
     /* Sections */
-    section { max-width:1100px; margin:28px auto; padding:0 24px; }
-    .grid { display:grid; gap:18px; justify-content:center; }
-    .grid.cols-2 { grid-template-columns:repeat(2,1fr); max-width:700px; margin:0 auto; }
+    section { max-width: var(--container); margin:32px auto; padding:0 24px; }
+    .grid { display:grid; gap:22px; justify-content:center; }
+    .grid.cols-2 { grid-template-columns:repeat(2, minmax(320px, 1fr)); max-width: 900px; margin:0 auto; }
     @media(max-width:900px){ .grid.cols-2{ grid-template-columns:1fr; } }
-    .tile { background: var(--paper); border-radius:var(--radius); box-shadow:var(--shadow); padding:22px; text-align:center; }
+    .tile { background: var(--paper); border-radius:var(--radius); box-shadow:var(--shadow); padding:28px; text-align:center; font-size:1.05rem; }
 
     /* Footer */
-    footer { background:#0c2a38; color:#d9f3ff; padding:28px 24px; margin-top:36px; }
-    .footer-inner { max-width:1100px; margin:0 auto; display:grid; gap:18px; grid-template-columns:1fr auto; }
+    footer { background:#0c2a38; color:#d9f3ff; padding:30px 24px; margin-top:auto; }
+    .footer-inner { max-width: var(--container); margin:0 auto; display:grid; gap:18px; grid-template-columns:1fr auto; }
     @media(max-width:800px){ .footer-inner{ grid-template-columns:1fr; } }
     .small { font-size:.92rem; opacity:.9; }
   </style>
@@ -71,10 +85,13 @@
         <span class="flag">ESTIMATION GRATUITE</span>
         <h2>Lavage de vitres<br/>commercial et industriel</h2>
         <p>Propre, net et sécuritaire. Nous servons <strong>Laval</strong>, <strong>Montréal</strong>, la <strong>Rive-Nord</strong> et les <strong>Laurentides</strong> avec un service fiable et ponctuel.</p>
-        <a class="cta" href="#contact">Demander une estimation</a>
+        <a class="btn-estimation" href="#contact">Demander une estimation</a>
       </div>
       <div class="card right">
-        <img src="https://images.unsplash.com/photo-1525186402429-b4ff38bedbec?auto=format&fit=crop&w=800&q=80" alt="Bâtiment commercial avec vitres propres" />
+        <div class="slideshow" id="slideshow" aria-label="Photos de vitres propres">
+          <div class="slide active"><img src="https://www.bernard.fr/INTERSHOP/static/WFS/RAJA-Site/BERNARDFR/RAJA-BERNARDFR/fr_FR/img/conseils/header/nettoyage-vitre.jpg" alt="Nettoyage de vitres d'entreprise" /></div>
+          <div class="slide"><img src="https://img1.wsimg.com/isteam/ip/67d6b43b-d1cc-4c97-a381-d64216fe4afa/nettoyage-vitres-hauts-de-france_enhanced%20cop.webp/:/cr=t:9.89%25,l:0%25,w:100%25,h:75%25/rs=w:1240,h:620,cg=true" alt="Vitres impeccables sur immeuble industriel" /></div>
+        </div>
       </div>
     </div>
 
@@ -110,6 +127,21 @@
     </div>
     <div class="small">© <span id="year"></span> Service d'entretien J.V.R.</div>
   </footer>
-  <script>document.getElementById('year').textContent=new Date().getFullYear();</script>
+
+  <script>
+    // Footer year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Simple slideshow auto (crossfade)
+    const slideshow = document.getElementById('slideshow');
+    const slides = Array.from(slideshow.querySelectorAll('.slide'));
+    let idx = 0;
+    function go(n){
+      slides[idx].classList.remove('active');
+      idx = (n + slides.length) % slides.length;
+      slides[idx].classList.add('active');
+    }
+    setInterval(()=> go(idx+1), 6000);
+  </script>
 </body>
 </html>
