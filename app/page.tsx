@@ -101,10 +101,10 @@ export default function Home() {
         <div className="hero-grid shell">
           <div className="hero-copy">
             <div className="eyebrow"><span />Commercial · Industriel</div>
-            <h1>Des vitres impeccables.<br /><em>Une image qui brille.</em></h1>
+            <h1>Lavage de vitres<br /><em>commercial et industriel.</em></h1>
             <p>
-              Un service professionnel, ponctuel et sécuritaire pour vos vitrines,
-              bureaux et bâtiments à grande surface vitrée.
+              Des vitres impeccables grâce à un service professionnel, ponctuel et
+              sécuritaire pour vos vitrines, bureaux et bâtiments à grande surface vitrée.
             </p>
             <div className="hero-actions">
               <a className="button button-primary" href="#contact">
